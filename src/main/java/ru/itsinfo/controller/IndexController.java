@@ -9,6 +9,7 @@ public class IndexController {
 
 	@GetMapping("/")
 	public String mainPage(ModelMap model) {
+//		System.out.println("Index controller");
 		return "index";
 	}
 }

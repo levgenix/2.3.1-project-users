@@ -68,4 +68,10 @@ public class User {
    public void setPassword(String password) {
       this.password = password;
    }
+
+   @Override
+   public String toString() {
+      return String.format("User [id = %d; firstName = %s; lastName = %s; email = %s; password = %s]",
+              id, firstName, lastName, email, password);
+   }
 }

@@ -13,7 +13,9 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-        <a class="navbar-brand" th:href="@{/}">Java Mentor</a>
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/static/img/jm-logo-sq.png}" alt="ITS Info" width="32px" height="32px"/>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,16 +28,23 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col text-center">
-            <h1 class="mt-5">CRUD App</h1>
-            <p class="lead">Практическая задача 2.3.1</p>
-            <ul class="list-unstyled">
-                <li>Spring MVC</li>
-                <li>Hibernate</li>
-            </ul>
-        </div>
+<div class="container pt-4">
+    <div class="jumbotron">
+        <h1 class="display-4">CRUD App</h1>
+        <p class="lead">CRUD App using Spring MVC, JSP/ Hibernate, Spring Security</p>
+        <hr class="my-4">
+        <p>Sign in for access</p>
+        <form method="post" action="/j_spring_security_check">
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" name="j_username" placeholder="Email (login)" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="password" class="form-control" name="j_password" placeholder="Password" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-secondary">Sign in</button>
+        </form>
     </div>
 </div>
 

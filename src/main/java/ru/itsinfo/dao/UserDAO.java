@@ -14,4 +14,6 @@ public interface UserDAO {
     User updateUser(User user);
 
     User readUser(Integer userId);
+
+    User loadUserByUsername(String email);
 }

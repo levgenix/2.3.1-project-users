@@ -62,11 +62,11 @@ public class IndexController {
 	@GetMapping()
 	public String mainPage(Model model) {
 		// TODO при ?logout выводить прощальное сообщение
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication.isAuthenticated()) {
-			System.out.println(authentication.getPrincipal());
-			System.out.println(authentication.getAuthorities());
-		}
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//		if (authentication.isAuthenticated()) {
+//			System.out.println(authentication.getPrincipal());
+//			System.out.println(authentication.getAuthorities());
+//		}
 		// TODO как отловить неудачный логин "/?error" @PostMapping
 		return "index";
 	}

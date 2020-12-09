@@ -55,15 +55,17 @@ public class UserServiceimpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = new User();
-        user.setEmail("111");
-        user.setPassword("111");
-        Set<Role> roles = new HashSet<>();
-        roles.add(new Role(1, "ROLE_USER"));
-//        roles.add(new Role(2, "ROLE_ADMIN"));
-        user.setRoles(roles);
+    public User loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userDAO.loadUserByUsername(email);
 
-        return user;
+//        User user = new User();
+//        user.setEmail("111");
+//        user.setPassword("111");
+//        Set<Role> roles = new HashSet<>();
+//        roles.add(new Role(1, "ROLE_USER"));
+////        roles.add(new Role(2, "ROLE_ADMIN"));
+//        user.setRoles(roles);
+//
+//        return user;
     }
 }

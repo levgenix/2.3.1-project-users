@@ -37,7 +37,7 @@
 
 <div class="container">
     <div class="row p-3 mb-2 bg-light text-dark">
-        <div class="col-12">Wellcome, User!</div>
+        <div class="col-12" th:text="|Wellcome, ${principal.getFirstName()} ${principal.getLastName()}!|"/>
     </div>
 </div>
 

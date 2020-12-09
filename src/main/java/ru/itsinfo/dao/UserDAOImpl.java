@@ -5,6 +5,7 @@ import ru.itsinfo.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -45,5 +46,11 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User readUser(Integer userId) {
         return entityManager.find(User.class, userId);
+    }
+
+    public User loadUserByUsername(String email) {
+        TypedQuery<User> query = entityManager.createQuery("from User where email = :email", User.class);
+        query.setParameter("email", email);
+        return query.setMaxResults(1).getSingleResult();
     }
 }

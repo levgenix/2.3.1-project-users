@@ -4,6 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -11,24 +13,28 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
+@PropertySource("classpath:application.properties")
 @EnableTransactionManagement
 @EnableWebMvc
 @ComponentScan("ru.itsinfo")
 public class AppConfig implements WebMvcConfigurer {
 
+    private final Environment env;
+
     private final ApplicationContext applicationContext;
 
-    public AppConfig(ApplicationContext applicationContext) {
+    public AppConfig(ApplicationContext applicationContext, Environment env) {
         this.applicationContext = applicationContext;
+        this.env = env;
     }
 
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/pages/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML5");
+        templateResolver.setPrefix(env.getProperty("spring.mvc.view.prefix"));
+        templateResolver.setSuffix(env.getProperty("spring.mvc.view.suffix"));
+        templateResolver.setTemplateMode(env.getProperty("spring.mvc.view.template_mode"));
         templateResolver.setCacheable(false);
         return templateResolver;
     }

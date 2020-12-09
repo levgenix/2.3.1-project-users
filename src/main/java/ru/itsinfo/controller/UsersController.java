@@ -18,10 +18,11 @@ public class UsersController {
 		this.userService = userService;
 	}
 
-	@GetMapping({"", "/", "list"})
+	@GetMapping({"", "/", "list"}) //TODO
 	public String userList(Model model,
 						   @ModelAttribute("flashMessage") String flashAttribute) {
 		model.addAttribute("users", userService.readAllUsers());
+//		setFlashMessage("dsfsdfdsfsdf"); //TODO
 		return "users/list";
 	}
 
@@ -56,7 +57,7 @@ public class UsersController {
 	}
 
 	@GetMapping("/delete")
-	public RedirectView deleteUser(@RequestParam(value = "id", required = true, defaultValue = "") String id,
+	public RedirectView deleteUser(@RequestParam(value = "id", required = true, defaultValue = "") String id, // TODO не проверять
 								   RedirectAttributes attributes) {
 		try {
 			User user = userService.deleteUser(Integer.parseUnsignedInt(id));
@@ -66,5 +67,10 @@ public class UsersController {
 		}
 
 		return new RedirectView("/users/list");
+	}
+
+	@ModelAttribute("flashMessage")
+	public String setFlashMessage(String message) {
+		return message;
 	}
 }

@@ -19,9 +19,12 @@
  * Задание:
  * 1. Перенесите классы и зависимости из примера в свое MVC приложение из предыдущей задачи.
  * 2. Создайте класс Role и свяжите User с ролями так, чтобы юзер мог иметь несколько ролей.
- * 3. Имплементируйте модели Role и User интерфейсами GrantedAuthority и UserDetails соответственно. Измените настройку секьюрности с inMemory на userDetailService.
+ * 3. Имплементируйте модели Role и User интерфейсами GrantedAuthority и UserDetails соответственно. Измените настройку
+ * секьюрности с inMemory на userDetailService.
  * 4. Все CRUD-операции и страницы для них должны быть доступны только пользователю с ролью admin по url: /admin/.
- * 5. Пользователь с ролью user должен иметь доступ только к своей домашней странице /user, где выводятся его данные. Доступ к этой странице должен быть только у пользователей с ролью userи admin. Не забывайте про несколько ролей у пользователя!
+ * 5. Пользователь с ролью user должен иметь доступ только к своей домашней странице /user, где выводятся его данные.
+ * Доступ к этой странице должен быть только у пользователей с ролью userи admin. Не забывайте про несколько ролей у
+ * пользователя!
  * 6. Настройте logout с любой страницы с использованием возможностей thymeleaf.
  * 7. Настройте LoginSuccessHandler так, чтобы админа после логина направляло на страницу /admin, а юзера на его страницу.
  */
@@ -59,7 +62,6 @@ public class IndexController {
 	@GetMapping()
 	public String mainPage(Model model) {
 		// TODO при ?logout выводить прощальное сообщение
-//		System.out.println("Index controller");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.isAuthenticated()) {
 			System.out.println(authentication.getPrincipal());
@@ -69,17 +71,22 @@ public class IndexController {
 		return "index";
 	}
 
-	@PostMapping("/j_spring_security_check")
-	public void getLogin(@RequestParam(required = false, defaultValue = "" ) String j_username,
-						 @RequestParam(required = false, defaultValue = "" ) String pass,
-						 Model model) {
-System.exit(1);
-		System.out.println("lOGIN: " + j_username);
+	@GetMapping("/accessdenied")
+	public String accessDenied(Model model) {
+		return "accessdenied";
 	}
 
-	@GetMapping("logout")
-	public RedirectView logout(RedirectAttributes attributes) {
-		attributes.addAttribute("logout");
-		return new RedirectView("/");
-	}
+//	@PostMapping("/j_spring_security_check")
+//	public void getLogin(@RequestParam(required = false, defaultValue = "" ) String j_username,
+//						 @RequestParam(required = false, defaultValue = "" ) String j_password,
+//						 Model model) {
+//		System.out.println("lOGIN: " + j_username);
+//		System.out.println("PASSWORD: " + j_password);
+//	}
+
+//	@GetMapping("logout")
+//	public RedirectView logout(RedirectAttributes attributes) {
+//		attributes.addAttribute("logout");
+//		return new RedirectView("/");
+//	}
 }

@@ -61,7 +61,7 @@ public class UserServiceimpl implements UserService, UserDetailsService {
         user.setPassword("111");
         Set<Role> roles = new HashSet<>();
         roles.add(new Role(1, "ROLE_USER"));
-        roles.add(new Role(2, "ROLE_ADMIN"));
+//        roles.add(new Role(2, "ROLE_ADMIN"));
         user.setRoles(roles);
 
         return user;

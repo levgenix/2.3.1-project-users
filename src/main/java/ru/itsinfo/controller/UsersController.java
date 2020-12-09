@@ -21,6 +21,7 @@ public class UsersController {
 	@GetMapping({"", "/", "list"}) //TODO
 	public String userList(Model model,
 						   @ModelAttribute("flashMessage") String flashAttribute) {
+
 		model.addAttribute("users", userService.readAllUsers());
 //		setFlashMessage("dsfsdfdsfsdf"); //TODO
 		return "users/list";

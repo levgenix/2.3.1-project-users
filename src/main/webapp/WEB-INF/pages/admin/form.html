@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" th:classappend="${#httpServletRequest.requestURI.contains('users')} ? 'active'" th:href="@{/users}">User list</a></li>
+                <li class="nav-item"><a class="nav-link" th:classappend="${#httpServletRequest.requestURI.contains('users')} ? 'active'" th:href="@{/admin}">User list</a></li>
             </ul>
         </div>
     </div>
@@ -36,7 +36,7 @@
 </div>
 
 <div class="container">
-    <form method="post" th:action="@{/users}" th:object="${user}">
+    <form method="post" th:action="@{/admin}" th:object="${user}">
         <input type="hidden" th:field="*{id}" th:value="*{getId()}">
         <div class="form-row">
             <div class="col-md-6 mb-3">
@@ -60,7 +60,7 @@
         </div>
 
         <button class="btn btn-secondary" type="submit" th:text="*{getId()} ? 'Save' : 'Create'"/>
-        <a class="btn btn-light border-dark" href="/users/list">Cancel</a>
+        <a class="btn btn-light border-dark" href="/admin/list">Cancel</a>
     </form>
 </div>
 

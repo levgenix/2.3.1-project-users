@@ -16,7 +16,7 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication.isAuthenticated()) {
             model.addAttribute("principal", authentication.getPrincipal());
-            return "/users/info";
+            return "/user/info";
         }
         return "redirect:/accessdenied";
     }

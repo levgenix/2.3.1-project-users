@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" th:classappend="${#httpServletRequest.requestURI.contains('users')} ? 'active'" th:href="@{/users}">User list</a></li>
+                <li class="nav-item"><a class="nav-link" th:classappend="${#httpServletRequest.requestURI.contains('users')} ? 'active'" th:href="@{/admin}">User list</a></li>
             </ul>
         </div>
     </div>
@@ -37,7 +37,7 @@
 
 <div class="container">
     <div class="row p-3 mb-2">
-        <div class="col-12"><a type="button" href="/users/create" class="btn btn-secondary">Create new user</a> Message: <p th:text="${flashMessage}"/></div>
+        <div class="col-12"><a type="button" href="/admin/create" class="btn btn-secondary">Create new user</a> Message: <p th:text="${flashMessage}"/></div>
     </div>
 </div>
 
@@ -52,12 +52,12 @@
 
     <div th:each="user,rowStat : ${users}" class="row p-3 mb-2 " th:classappend="${rowStat.count % 2 != 0 ? 'bg-light text-dark' : 'bg-secondary text-white'}">
         <div class="col-1 text-center">
-            <a th:text="|${user.getId()} &raquo;|" th:class="${rowStat.count % 2 != 0 ? 'text-dark' : 'text-white'}" th:href="@{/users/edit(id=${user.getId()})}" title="Edit user data"/>
+            <a th:text="|${user.getId()} &raquo;|" th:class="${rowStat.count % 2 != 0 ? 'text-dark' : 'text-white'}" th:href="@{/admin/edit(id=${user.getId()})}" title="Edit user data"/>
         </div>
         <div class="col-3 font-weight-bold" th:text="${user.getFirstName()}"/>
         <div class="col-3" th:text="${user.getLastName()}"/>
         <div class="col-3 text-center" th:text="${user.getEmail()}"/>
-        <div class="col-2"><a th:class="${rowStat.count % 2 != 0 ? 'text-dark' : 'text-white'}" th:href="@{/users/delete(id=${user.getId()})}" title="Delete user">delete >></a></div>
+        <div class="col-2"><a th:class="${rowStat.count % 2 != 0 ? 'text-dark' : 'text-white'}" th:href="@{/admin/delete(id=${user.getId()})}" title="Delete user">delete >></a></div>
     </div>
 </div>
 

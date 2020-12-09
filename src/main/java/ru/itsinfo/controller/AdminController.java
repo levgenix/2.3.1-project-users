@@ -9,12 +9,12 @@ import ru.itsinfo.model.User;
 import ru.itsinfo.service.UserService;
 
 @Controller
-@RequestMapping("/users")
-public class UsersController {
+@RequestMapping("/admin")
+public class AdminController {
 
 	private final UserService userService;
 
-	public UsersController(UserService userService) {
+	public AdminController(UserService userService) {
 		this.userService = userService;
 	}
 
@@ -24,12 +24,12 @@ public class UsersController {
 
 		model.addAttribute("users", userService.readAllUsers());
 //		setFlashMessage("dsfsdfdsfsdf"); //TODO
-		return "users/list";
+		return "admin/list";
 	}
 
 	@GetMapping("/create")
 	public String addUserForm(@ModelAttribute("user") User user) {
-		return "users/form";
+		return "admin/form";
 	}
 
 	@GetMapping(value = "/edit", params = "id")
@@ -39,9 +39,9 @@ public class UsersController {
 			model.addAttribute("user", userService.readUser(id));
 		} catch (NumberFormatException | NullPointerException e) {
 			attributes.addFlashAttribute("flashMessage", "User are not exists!");
-			return "redirect:/users/list";
+			return "redirect:/admin/list";
 		}
-		return "users/form";
+		return "admin/form";
 	}
 
 	@PostMapping()
@@ -54,7 +54,7 @@ public class UsersController {
 		}
 
 		attributes.addFlashAttribute("flashMessage", "User " + user.getFirstName() + " successfully created!");
-		return new RedirectView("/users/list");
+		return new RedirectView("/admin/list");
 	}
 
 	@GetMapping("/delete")
@@ -67,7 +67,7 @@ public class UsersController {
 			attributes.addFlashAttribute("flashMessage", "User are not exists!");
 		}
 
-		return new RedirectView("/users/list");
+		return new RedirectView("/admin/list");
 	}
 
 	@ModelAttribute("flashMessage")

@@ -46,27 +46,17 @@ import org.springframework.web.servlet.view.RedirectView;
 import ru.itsinfo.model.User;
 
 @Controller
-public class IndexController {
-
-	/*
-        <sec:authorize access="!isAuthenticated()">
-            <p><a class="btn btn-lg btn-success" href="<c:url value="/login" />" role="button">Войти</a></p>
-        </sec:authorize>
-        <sec:authorize access="isAuthenticated()">
-            <p>Ваш логин: <sec:authentication property="principal.username" /></p>
-            <p><a class="btn btn-lg btn-danger" href="<c:url value="/logout" />" role="button">Выйти</a></p>
-
-        </sec:authorize>
-	 */
-
+public class IndexController extends MainController {
 	@GetMapping()
 	public String mainPage(Model model) {
 		// TODO при ?logout выводить прощальное сообщение
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		if (authentication.isAuthenticated()) {
-//			System.out.println(authentication.getPrincipal());
-//			System.out.println(authentication.getAuthorities());
-//		}
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication.isAuthenticated()) {
+			System.out.println(authentication.getPrincipal());
+			System.out.println(authentication.getAuthorities());
+		} else {
+			System.out.println("NOT Authenticated");
+		}
 		// TODO как отловить неудачный логин "/?error" @PostMapping
 		return "index";
 	}
@@ -89,4 +79,9 @@ public class IndexController {
 //		attributes.addAttribute("logout");
 //		return new RedirectView("/");
 //	}
+
+	@ModelAttribute("authentication")
+	public Authentication getAuthentication() {
+		return SecurityContextHolder.getContext().getAuthentication();
+	}
 }

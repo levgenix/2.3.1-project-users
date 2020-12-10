@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll() // доступность всем
                 .antMatchers("/user").access("hasAnyRole('ROLE_USER')") // разрешаем входить на /user пользователям с ролью User
                 .antMatchers("/", "/admin").access("hasAnyRole('ROLE_ADMIN')") // доступность ко всему с ролью Admin
+                .antMatchers("/**").authenticated() //TODO
                 .and()
                 .exceptionHandling().accessDeniedPage("/accessdenied"); // 403 error https://www.codeflow.site/ru/article/spring-security-custom-access-denied-page
 //                .formLogin().successHandler(successUserHandler); // подключаем наш SuccessHandler для перенеправления по ролям

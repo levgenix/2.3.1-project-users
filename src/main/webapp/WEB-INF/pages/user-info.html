@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: header}"/>
+
+<body>
+
+<th:block th:insert="~{fragments :: navigation}"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h1 class="mt-5">CRUD App</h1>
+            <p class="lead">User info page</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row p-3 mb-2 bg-light text-dark" th:object="${principal}">
+        <div class="col-12" th:text="|Wellcome, *{fullName}!|"/>
+    </div>
+</div>
+
+<th:block th:insert="~{fragments :: footer}"/>
+
+</body>
+</html>

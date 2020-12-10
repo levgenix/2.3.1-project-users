@@ -75,6 +75,10 @@ public class User implements UserDetails {
       this.lastName = lastName;
    }
 
+   public String getFullName() {
+      return getFirstName() + " " + getLastName();
+   }
+
    public String getEmail() {
       return email;
    }
